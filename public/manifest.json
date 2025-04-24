@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "LiveCompiler - Offline Compiler",
+  "description": "",
+  "version": "1.0.0",
+  "icons": {
+    "128": "/images/livecompiler-128.png",
+    "48": "/images/livecompiler-48.png",
+    "32": "/images/livecompiler-32.png",
+    "16": "/images/livecompiler-16.png"
+  },
+  "action": {
+    "default_icon": {
+      "128": "/images/livecompiler-128.png",
+      "48": "/images/livecompiler-48.png",
+      "32": "/images/livecompiler-32.png",
+      "16": "/images/livecompiler-16.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "background": {
+    "service_worker": "assets/background.js",
+    "type": "module"
+  },
+  "permissions": ["sidePanel"]
+}
