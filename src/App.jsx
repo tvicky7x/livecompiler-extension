@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { defaultKeymap } from "@codemirror/commands";
+import { javascript } from "@codemirror/lang-javascript";
+import { EditorState } from "@codemirror/state";
+import { EditorView, keymap, lineNumbers } from "@codemirror/view";
+import { basicSetup } from "codemirror";
+import React, { useEffect, useRef } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const editorRef = useRef();
+
+  useEffect(() => {
+    let startState = EditorState.create({
+      doc: "Hello World",
+      extensions: [
+        keymap.of(defaultKeymap),
+        basicSetup,
+        javascript(),
+        lineNumbers(),
+      ],
+    });
+
+    let view = new EditorView({
+      state: startState,
+      parent: editorRef.current,
+    });
+
+    return () => {
+      view.destroy();
+    };
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <div ref={editorRef} />
+    </div>
+  );
 }
 
-export default App
+export default App;
