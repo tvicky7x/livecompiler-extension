@@ -14,9 +14,11 @@
     "@codemirror/lang-javascript": "^6.2.3",
     "@codemirror/state": "^6.5.2",
     "@codemirror/view": "^6.36.6",
+    "@tailwindcss/vite": "^4.1.4",
     "codemirror": "^6.0.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",

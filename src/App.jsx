@@ -31,7 +31,7 @@ function App() {
 
   return (
     <div>
-      <div ref={editorRef} />
+      <div ref={editorRef} className="border h-[50vh] " />
     </div>
   );
 }
