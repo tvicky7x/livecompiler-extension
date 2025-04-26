@@ -1,39 +1,22 @@
-import { defaultKeymap } from "@codemirror/commands";
-import { javascript } from "@codemirror/lang-javascript";
-import { EditorState } from "@codemirror/state";
-import { EditorView, keymap, lineNumbers } from "@codemirror/view";
-import { basicSetup } from "codemirror";
-import React, { useEffect, useRef } from "react";
+import React from "react";
+import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/components/ui/resizable";
+import CodeTextEditor from "./components/CodeTextEditor/CodeTextEditor";
 
 function App() {
-  const editorRef = useRef();
-
-  useEffect(() => {
-    let startState = EditorState.create({
-      doc: "Hello World",
-      extensions: [
-        keymap.of(defaultKeymap),
-        basicSetup,
-        javascript(),
-        lineNumbers(),
-      ],
-    });
-
-    let view = new EditorView({
-      state: startState,
-      parent: editorRef.current,
-    });
-
-    return () => {
-      view.destroy();
-    };
-  }, []);
-
   return (
     <div>
-      <div ref={editorRef} className="border h-[50vh] " />
+      <ResizablePanelGroup direction="vertical" className="min-h-screen">
+        <ResizablePanel defaultSize={60}>
+          <CodeTextEditor />
+        </ResizablePanel>
+        <ResizableHandle className="hover:border border-slate-400" />
+        <ResizablePanel defaultSize={40}>Two</ResizablePanel>
+      </ResizablePanelGroup>
     </div>
   );
 }
-
 export default App;
