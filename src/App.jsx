@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <ResizablePanelGroup direction="vertical" className="min-h-screen">
-        <ResizablePanel defaultSize={60}>
+        <ResizablePanel defaultSize={60} className="flex flex-col">
           <CodeTextEditor />
         </ResizablePanel>
         <ResizableHandle className="hover:border border-slate-400" />
