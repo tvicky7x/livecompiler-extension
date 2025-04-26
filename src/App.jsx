@@ -13,7 +13,7 @@ function App() {
         <ResizablePanel defaultSize={60} className="flex flex-col">
           <CodeTextEditor />
         </ResizablePanel>
-        <ResizableHandle className="hover:border border-slate-400" />
+        <ResizableHandle className="border border-transparent hover:border hover:border-slate-400" />
         <ResizablePanel defaultSize={40}>Two</ResizablePanel>
       </ResizablePanelGroup>
     </div>
