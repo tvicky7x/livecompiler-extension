@@ -13,7 +13,7 @@ function CodeTextEditor() {
   }, []);
 
   return (
-    <div className="h-full w-full">
+    <div className="overflow-hidden">
       <CodeMirror
         value={value}
         extensions={[
