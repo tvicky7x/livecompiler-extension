@@ -17,6 +17,7 @@ function App() {
   const [error, setError] = useState(null);
   const [codeExecuting, setCodeExecuting] = useState(false);
   const workerRef = useRef(null);
+  const timeoutId = useRef(null);
 
   const onChange = useCallback((val) => {
     setCode(val);
@@ -28,6 +29,7 @@ function App() {
       setError(null);
       setCodeExecuting(true);
       workerRef.current.postMessage(code);
+      timeoutId.current = stopWorkerTimeout();
     }
   }
 
@@ -38,6 +40,14 @@ function App() {
       workerRef.current = createWorker();
       setCodeExecuting(false);
     }
+  }
+
+  function stopWorkerTimeout() {
+    const id = setTimeout(() => {
+      stopWorker();
+      setError("Terminated: Execution took too long (possible infinite loop).");
+    }, 3000);
+    return id;
   }
 
   function createWorker() {
@@ -62,6 +72,7 @@ function App() {
     workerRef.current = createWorker();
     return () => {
       workerRef.current.terminate();
+      clearTimeout(timeoutId.current);
     };
   }, []);
 
